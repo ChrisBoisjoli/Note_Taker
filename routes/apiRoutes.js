@@ -3,14 +3,15 @@ const { v4: uuidv4 } = require('uuid');
 
 module.exports = function(app) {
     app.get("/api/notes", function (req, res) {
-        res.json(storeData)
+        res.json(storeData);
+        console.log(storeData);
     });
 
     app.post("/api/notes", function (req, res) {
         var your_uuid = uuidv4();
-        console.log(your_uuid);
         
-        storeData.push(req.body);
+        
+        storeData.push(req.body, your_uuid);
         res.json(true);
 
     });
