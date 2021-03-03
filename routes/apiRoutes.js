@@ -5,4 +5,4 @@ module.exports = function(app) {
         res.json(storeData)
     });
 
-}
+};
