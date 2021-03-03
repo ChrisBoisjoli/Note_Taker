@@ -1,4 +1,4 @@
-var storeData = require("../data/storeData");
+var storeData = require("../data/db.json");
 
 module.exports = function(app) {
     app.get("/api/notes", function (req, res) {
