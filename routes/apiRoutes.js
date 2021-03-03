@@ -1,0 +1,1 @@
+var storeData = require("../data/storeData");
