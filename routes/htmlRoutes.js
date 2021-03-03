@@ -9,6 +9,8 @@ module.exports = function (app){
     });
 
 // GET * - Should return the index.html file
+    app.get("*", function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/index.html"));
+    });
 
-
-}
+};
