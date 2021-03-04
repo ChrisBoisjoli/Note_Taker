@@ -2,6 +2,7 @@ var storeData = require("../data/db.json");
 const { v4: uuidv4 } = require('uuid');
 const noteID = uuidv4();
 const fs = require("fs");
+const { json } = require("express");
 
 module.exports = function(app) {
     app.get("/api/notes", function (req, res) {
@@ -14,6 +15,13 @@ module.exports = function(app) {
         newNote.id = uuidv4();
         storeData.push(newNote);
         res.json(newNote);
+
+        let notepad = json.stringify(newNote);
+
+        fs.writeFile(storeData, notepad, (err) => {
+            if (err){ throw err}
+        });
+
 
     });
     app.delete("api/notes/:id", function (req, res){
