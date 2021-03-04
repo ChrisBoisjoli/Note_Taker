@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 const noteID = uuidv4();
 const fs = require("fs");
 const { json } = require("express");
+const { dirname } = require("path");
 
 module.exports = function(app) {
     app.get("/api/notes", function (req, res) {
@@ -24,15 +25,21 @@ module.exports = function(app) {
 
 
     });
-    app.delete("api/notes/:id", function (req, res){
-        const deleteNoteID = req.params.id;
-        for (let i = 0; i < noteData.length; i++) {
-            if (storeData[i].id === deleteNoteID) {
-                storeData.splice(i, 1);
-            }
-        }
-            
 
+    
+    app.delete("api/notes/:id", function (req, res){
+        const toDelete = parseInt(req.params.id);
+
+        let totalNotes = notes.filter((note) =>note.id !== noteId);
+        totalNotes.forEach((note) => delete note.id);
+        let newId = totalNotes.map((note, index) => ({ id: index + 1, ...note }));
+        
+        let leftNotes = JSON.stringify(newId);
+        let postPath = path.join(__dirname, "../data/db.json");
+        fs.writeFile(postPath, leftNotes, (err) => {
+            if (err){ throw err}
+        });
+        res.JSON(leftNotes);
       
     });
 };
