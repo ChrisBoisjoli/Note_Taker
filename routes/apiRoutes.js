@@ -28,19 +28,24 @@ module.exports = function(app) {
 
     
     app.delete("api/notes/:id", function (req, res){
+         
+        const toDelete = storeData;
 
-        const toDelete = parseInt(req.params.id);
+        const result = toDelete.filter(id);
 
-        let totalNotes = notes.filter((note) =>note.id !== noteId);
-        totalNotes.forEach((note) => delete note.id);
-        let newId = totalNotes.map((note, index) => ({ id: index + 1, ...note }));
+        console.log(result);
+
+        // let totalNotes = storeData.filter((toDelete) =>note.id !== noteId);
+        // totalNotes.forEach((note) => delete note.id);
+        // let newId = totalNotes.map((note, index) => ({ id: index + 1, ...note }));
         
-        let leftNotes = JSON.stringify(newId);
-        let postPath = path.join(__dirname, "../data/db.json");
-        fs.writeFile(postPath, leftNotes, (err) => {
-            if (err){ throw err}
-        });
-        res.JSON(leftNotes);
+        // let leftNotes = JSON.stringify(newId);
+
+        // let postPath = path.join(__dirname, "../data/db.json");
+        // fs.writeFile(postPath, leftNotes, (err) => {
+        //     if (err){ throw err}
+        // });
+        // res.JSON(leftNotes);
       
     });
 };
