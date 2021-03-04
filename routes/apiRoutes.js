@@ -4,17 +4,20 @@ const noteID = uuidv4();
 
 module.exports = function(app) {
     app.get("/api/notes", function (req, res) {
+
         res.json(storeData);
         console.log(storeData);
     });
 
     app.post("/api/notes", function (req, res) {
-        storeData.push(req.body, noteID);
+        let newNote = req.body;
+        newNote.id = uuidv4();
+        storeData.push(newNote);
         res.json(true);
 
     });
     app.delete("api/notes/:id", function (req, res){
-        var id = noteID;
+        
     });
 };
 
