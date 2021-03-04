@@ -4,7 +4,6 @@ const noteID = uuidv4();
 
 module.exports = function(app) {
     app.get("/api/notes", function (req, res) {
-
         res.json(storeData);
         console.log(storeData);
     });
@@ -13,12 +12,19 @@ module.exports = function(app) {
         let newNote = req.body;
         newNote.id = uuidv4();
         storeData.push(newNote);
-        res.json(true);
+        res.json(newNote);
 
     });
     app.delete("api/notes/:id", function (req, res){
-        
+        const deleteNoteID = req.params.id;
+        for (let i = 0; i < noteData.length; i++) {
+            if (storeData[i].id === deleteNoteID) {
+                storeData.splice(i, 1);
+            }
+        }
+            
+
+      
     });
 };
-
 // POST /api/notes - Should receive a new note to save on the request body, add it to the db.json file, and then return the new note to the client.
