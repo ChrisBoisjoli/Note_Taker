@@ -28,6 +28,7 @@ module.exports = function(app) {
 
     
     app.delete("api/notes/:id", function (req, res){
+
         const toDelete = parseInt(req.params.id);
 
         let totalNotes = notes.filter((note) =>note.id !== noteId);
