@@ -34,18 +34,6 @@ module.exports = function(app) {
         const result = toDelete.filter(id);
 
         console.log(result);
-
-        // let totalNotes = storeData.filter((toDelete) =>note.id !== noteId);
-        // totalNotes.forEach((note) => delete note.id);
-        // let newId = totalNotes.map((note, index) => ({ id: index + 1, ...note }));
-        
-        // let leftNotes = JSON.stringify(newId);
-
-        // let postPath = path.join(__dirname, "../data/db.json");
-        // fs.writeFile(postPath, leftNotes, (err) => {
-        //     if (err){ throw err}
-        // });
-        // res.JSON(leftNotes);
       
     });
 };
