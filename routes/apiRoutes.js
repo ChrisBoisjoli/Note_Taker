@@ -1,5 +1,6 @@
 var storeData = require("../data/db.json");
 const { v4: uuidv4 } = require('uuid');
+var id = uuidv4();
 
 module.exports = function(app) {
     app.get("/api/notes", function (req, res) {
@@ -8,11 +9,11 @@ module.exports = function(app) {
     });
 
     app.post("/api/notes", function (req, res) {
-        var your_uuid = uuidv4();
-        
-        
-        storeData.push(req.body, your_uuid);
+        storeData.push(req.body, id);
         res.json(true);
+
+    });
+    app.delete("api/notes/:id", function (req, res){
 
     });
 };
