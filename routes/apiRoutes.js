@@ -28,13 +28,19 @@ module.exports = function(app) {
 
     
     app.delete("api/notes/:id", function (req, res){
-         
-        const toDelete = storeData;
+        const idToDelete = req.params.id; 
 
-        const result = toDelete.filter(id);
+        const newData = storeData;
+        console.log(idToDelete,"\n", newData);
 
+        const result = newData.filter(record => record.id !== idToDelete);
+
+        toDelete.splice(1, id);
         console.log(result);
       
+        res.send("still testing");
+
+        //postman delete route 
     });
 };
 // POST /api/notes - Should receive a new note to save on the request body, add it to the db.json file, and then return the new note to the client.
